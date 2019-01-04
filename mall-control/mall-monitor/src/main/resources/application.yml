@@ -9,7 +9,7 @@ spring:
       host: 127.0.0.1
       port: 8500
       discovery:
-        enabled: true
+        enabled: true #window 开启telnet
         healthCheckPath: /actuator/health
         healthCheckInterval: 5s
         instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
