@@ -10,7 +10,22 @@ spring:
       port: 8500
       discovery:
         enabled: true #window 开启telnet
-        healthCheckPath: /actuator/health
+        register: true
+        healthCheckPath: ${management.server.servlet.context-path}/health
         healthCheckInterval: 5s
         instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
-        register: true
+        tags: mall-monitor
+        service-name: ${spring.application.name}
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+#  server:
+#    servlet:
+#      context-path: /
+#    ssl:
+#      enabled: false
+#  endpoint:
+#    health:
+#      show-details: always
