@@ -62,8 +62,8 @@ generator.init = function () {
         columns: generator.columns(),
         responseHandler: function(res) {
             return {
-                "total": res.data.total,//总页数
-                "rows": res.data.rows   //数据
+                "total": res.total,//总页数
+                "rows": res.rows   //数据
             };
         }
     });
