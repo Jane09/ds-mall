@@ -21,7 +21,9 @@ public enum ExceptionCode {
     //业务错误
     BIZ_ERROR(40305),
     //系统错误
-    SYSTEM_ERROR(40399)
+    SYSTEM_ERROR(40399),
+    //其他
+    OTHER_ERROR(40300)
     ;
     private int code;
 }
