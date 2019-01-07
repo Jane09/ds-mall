@@ -24,7 +24,7 @@ spring:
     consul:
       port: 8500
       host: localhost
-      enabled: true
+      enabled: false
       discovery:
         service-name: ${spring.application.name}
 # Mybatis配置

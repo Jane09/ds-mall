@@ -10,7 +10,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
  * @date 2019/1/7 14:27
  */
 @SpringBootApplication
-@MapperScan(basePackages = "com.ds.mall.generator.mapper")
+@MapperScan("com.ds.mall.generator.mapper")
 public class GeneratorApplication {
 
     public static void main(String[] args) {
