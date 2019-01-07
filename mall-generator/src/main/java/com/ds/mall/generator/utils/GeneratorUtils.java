@@ -30,7 +30,7 @@ public final class GeneratorUtils {
         add("template/index.js.vm");
         add("template/index.vue.vm");
         add("template/mapper.xml.vm");
-        add("template/biz.java.vm");
+        add("template/service.java.vm");
         add("template/entity.java.vm");
         add("template/mapper.java.vm");
         add("template/controller.java.vm");

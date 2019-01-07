@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("${secondModuleName}")
-public class ${className}Controller extends AbstractBaseController<${className}Biz,${className}> {
+public class ${className}Controller extends AbstractBaseController<${className}Service,${className}> {
 
 }
