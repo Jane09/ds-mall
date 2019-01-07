@@ -18,7 +18,7 @@ spring:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
   thymeleaf:
-    mode: LEGACYHTML5
+    mode: HTML
     cache: false
   cloud:
     consul:
