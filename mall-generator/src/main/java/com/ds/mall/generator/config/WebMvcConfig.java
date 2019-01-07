@@ -16,15 +16,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 public class WebMvcConfig extends WebMvcConfigurationSupport {
 
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        super.addResourceHandlers(registry);
-        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/*");
-    }
-
-    @Override
     protected void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName( "forward:/index.html" );
         registry.setOrder( Ordered.HIGHEST_PRECEDENCE );
         super.addViewControllers( registry );
+    }
+
+    @Override
+    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+        super.addResourceHandlers(registry);
+        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
     }
 }

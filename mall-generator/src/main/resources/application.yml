@@ -24,9 +24,10 @@ spring:
     consul:
       port: 8500
       host: localhost
-      enabled: false
+      enabled: true
       discovery:
         service-name: ${spring.application.name}
+        tags: foo=${spring.application.name}
 # Mybatis配置
 mybatis:
   mapperLocations: classpath:mapper/**/*.xml
