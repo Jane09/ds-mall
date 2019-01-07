@@ -22,6 +22,11 @@ public final class JwtUtils {
     private static final String EXPIRES = "expires";
     private static final String RANDOM = "random";
 
+    public static void main(String[] args) throws Exception {
+        IJwtData jwtData = new JwtData("hello","1212","tom");
+        System.out.println(generateToken(jwtData,"",1000));
+    }
+
     /**
      * 密钥加密token
      */

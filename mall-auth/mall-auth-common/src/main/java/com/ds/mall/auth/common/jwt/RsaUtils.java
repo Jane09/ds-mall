@@ -19,6 +19,13 @@ import java.util.Map;
  */
 public class RsaUtils {
 
+    public static void main(String[] args) throws NoSuchAlgorithmException {
+        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+        SecureRandom secureRandom = new SecureRandom("123".getBytes());
+        keyPairGenerator.initialize(1024, secureRandom);
+        KeyPair keyPair = keyPairGenerator.genKeyPair();
+        System.out.println(keyPair.getPublic().getEncoded());
+    }
     /**
      * 获取公钥
      *
@@ -142,7 +149,7 @@ public class RsaUtils {
         KeyPair keyPair = keyPairGenerator.genKeyPair();
         byte[] publicKeyBytes = keyPair.getPublic().getEncoded();
         byte[] privateKeyBytes = keyPair.getPrivate().getEncoded();
-        Map<String, byte[]> map = new HashMap<String, byte[]>();
+        Map<String, byte[]> map = new HashMap<>();
         map.put("pub", publicKeyBytes);
         map.put("pri", privateKeyBytes);
         return map;
@@ -156,11 +163,5 @@ public class RsaUtils {
         return (new BASE64Decoder()).decodeBuffer(s);
     }
 
-    public static void main(String[] args) throws NoSuchAlgorithmException {
-        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
-        SecureRandom secureRandom = new SecureRandom("123".getBytes());
-        keyPairGenerator.initialize(1024, secureRandom);
-        KeyPair keyPair = keyPairGenerator.genKeyPair();
-        System.out.println(keyPair.getPublic().getEncoded());
-    }
+
 }
