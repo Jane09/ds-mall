@@ -105,7 +105,7 @@ layui.use(['form', 'layedit', 'laydate'], function () {
             // }
             // location.href = "/base/generator/code?tables=" + JSON.stringify(tableNames);
 
-            var tableNames;
+            var tableNames="";
             for(var i=0;i<generator.currentItems.length;i++){
                 tableNames += generator.currentItems[i].tableName+",";
             }
