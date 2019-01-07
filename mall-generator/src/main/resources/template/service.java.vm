@@ -1,0 +1,16 @@
+package ${package}.service;
+
+import org.springframework.stereotype.Service;
+import com.ds.mall.common.service.AbstractBaseService;
+import ${package}.entity.${className};
+import ${package}.mapper.${className}Mapper;
+/**
+ * ${comments}
+ *
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+@Service
+public class ${className}Service extends AbstractBaseService<${className}Mapper,${className}> {
+}

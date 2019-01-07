@@ -1,0 +1,13 @@
+package ${package}.controller;
+
+import com.ds.mall.common.controller.AbstractBaseController;
+import ${package}.service.${className}Service;
+import ${package}.entity.${className};
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("${secondModuleName}")
+public class ${className}Controller extends AbstractBaseController<${className}Biz,${className}> {
+
+}
