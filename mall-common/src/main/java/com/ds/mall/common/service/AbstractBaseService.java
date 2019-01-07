@@ -53,13 +53,13 @@ public abstract class AbstractBaseService<M extends Mapper<T>, T> implements Bas
 
     @Override
     public void insert(T entity) {
-        EntityUtils.create(entity);
+        EntityUtils.createAndUpdate(entity);
         mapper.insert(entity);
     }
 
     @Override
     public void insertSelective(T entity) {
-        EntityUtils.update(entity);
+        EntityUtils.createAndUpdate(entity);
         mapper.insertSelective(entity);
     }
 

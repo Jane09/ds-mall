@@ -10,4 +10,7 @@ public interface Constants {
     String CONTEXT_CLIENT_TOKEN = "clientToken";
     String CONTEXT_CLIENT_NAME = "clientName";
 
+    String CLIENT_ID = CONTEXT_CLIENT_ID;
+    String CLIENT_NAME = CONTEXT_CLIENT_NAME;
+
 }
