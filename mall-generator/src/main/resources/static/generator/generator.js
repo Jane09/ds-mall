@@ -74,7 +74,11 @@ generator.select = function (layerTips) {
         generator.currentItems = rows;
         return true;
     } else {
-        layerTips.msg("请至少选中一行");
+        if(!!layerTips){
+            layerTips.msg("请至少选中一行");
+        }else {
+            layer.msg("请至少选中一行");
+        }
         return false;
     }
 };
@@ -95,11 +99,17 @@ layui.use(['form', 'layedit', 'laydate'], function () {
     });
     $('#btn_generate').on('click',function(){
         if(generator.select()){
-            var tableNames = [];
+            // var tableNames = [];
+            // for(var i=0;i<generator.currentItems.length;i++){
+            //     tableNames.push(generator.currentItems[i].tableName);
+            // }
+            // location.href = "/base/generator/code?tables=" + JSON.stringify(tableNames);
+
+            var tableNames;
             for(var i=0;i<generator.currentItems.length;i++){
-                tableNames.push(generator.currentItems[i].tableName);
+                tableNames += generator.currentItems[i].tableName+",";
             }
-            location.href = "/base/generator/code?tables=" + JSON.stringify(tableNames);
+            location.href = "/base/generator/code?tables=" + tableNames;
         }
     });
 });
