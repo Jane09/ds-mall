@@ -20,6 +20,10 @@
             <groupId>com.ds.mall</groupId>
             <artifactId>mall-auth-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.ds.mall</groupId>
+            <artifactId>mall-interface</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
