@@ -1,0 +1,2 @@
+# java -jar zipkin.jar --RABBIT_URI=amqp://guest:guest@localhost:5672/sleuth --STORAGE_TYPE=elasticsearch --ES_HOSTS=http//:localhost:9200 --ES_HTTP_LOGGING=BASIC
+java -jar zipkin.jar RABBIT_URI=amqp://guest:guest@localhost:5672  STORAGE_TYPE=mysql MYSQL_DB=ag_zipkin MYSQL_USER=root MYSQL_PASS=123456 MYSQL_HOST=localhost MYSQL_USE_SSL=false

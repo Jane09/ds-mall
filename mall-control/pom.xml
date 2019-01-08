@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>mall-monitor</module>
-        <module>mall-health</module>
+        <module>mall-trace</module>
     </modules>
 
 
