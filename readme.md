@@ -21,3 +21,11 @@
     监控
     追踪
 
+# mall-interface
+    接口
+    实体
+    传输实体
+ # mall-uid
+    uuid生成策略
+
+
