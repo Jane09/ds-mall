@@ -23,11 +23,19 @@ spring:
   cloud:
     consul:
       port: 8500
-      host: localhost
+      host: 127.0.0.1
       enabled: true
       discovery:
         service-name: ${spring.application.name}
-        tags: foo=${spring.application.name}
+        healthCheckPath: /actuator/health
+        healthCheckInterval: 5s
+        instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+        register: true
+        enabled: true
+  boot:
+    admin:
+      client:
+        url: http://127.0.0.1:8764
 # Mybatis配置
 mybatis:
   mapperLocations: classpath:mapper/**/*.xml
