@@ -1,6 +1,6 @@
-package com.ds.mall.api.vo.log;
+package com.ds.mall.backend.vo.log;
 
-import com.ds.mall.api.BaseCreate;
+import com.ds.mall.backend.BaseCreate;
 import lombok.Getter;
 import lombok.Setter;
 

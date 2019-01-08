@@ -166,7 +166,7 @@ public final class GeneratorUtils {
         }
 
         if (template.contains("index.js.vm")) {
-            return frontPath + "api" + File.separator + moduleName + File.separator + toLowerCaseFirstOne(className) + File.separator + "index.js";
+            return frontPath + "backend" + File.separator + moduleName + File.separator + toLowerCaseFirstOne(className) + File.separator + "index.js";
         }
 
         if (template.contains("index.vue.vm")) {

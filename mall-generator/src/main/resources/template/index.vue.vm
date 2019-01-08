@@ -58,7 +58,7 @@
       getObj,
       delObj,
       putObj
-  } from 'api/${moduleName}/${secondModuleName}/index';
+  } from 'backend/${moduleName}/${secondModuleName}/index';
   import { mapGetters } from 'vuex';
   export default {
     name: '${secondModuleName}',

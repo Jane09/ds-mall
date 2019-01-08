@@ -1,4 +1,4 @@
-package com.ds.mall.api;
+package com.ds.mall.backend;
 
 import lombok.Getter;
 import lombok.Setter;

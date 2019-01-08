@@ -1,4 +1,4 @@
-package com.ds.mall.api.vo.user;
+package com.ds.mall.backend.vo.user;
 
 import lombok.Getter;
 import lombok.Setter;

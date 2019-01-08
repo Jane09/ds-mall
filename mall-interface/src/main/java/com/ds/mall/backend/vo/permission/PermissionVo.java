@@ -1,4 +1,4 @@
-package com.ds.mall.api.vo.permission;
+package com.ds.mall.backend.vo.permission;
 
 import lombok.Getter;
 import lombok.Setter;

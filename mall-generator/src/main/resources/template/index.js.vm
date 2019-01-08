@@ -2,7 +2,7 @@ import fetch from 'utils/fetch';
 
 export function page(query) {
 return fetch({
-url: '/api/${moduleName}/${secondModuleName}/page',
+url: '/backend/${moduleName}/${secondModuleName}/page',
 method: 'get',
 params: query
 });
@@ -10,7 +10,7 @@ params: query
 
 export function addObj(obj) {
 return fetch({
-url: '/api/${moduleName}/${secondModuleName}',
+url: '/backend/${moduleName}/${secondModuleName}',
 method: 'post',
 data: obj
 });
@@ -18,21 +18,21 @@ data: obj
 
 export function getObj(id) {
 return fetch({
-url: '/api/${moduleName}/${secondModuleName}/' + id,
+url: '/backend/${moduleName}/${secondModuleName}/' + id,
 method: 'get'
 })
 }
 
 export function delObj(id) {
 return fetch({
-url: '/api/${moduleName}/${secondModuleName}/' + id,
+url: '/backend/${moduleName}/${secondModuleName}/' + id,
 method: 'delete'
 })
 }
 
 export function putObj(id, obj) {
 return fetch({
-url: '/api/${moduleName}/${secondModuleName}/' + id,
+url: '/backend/${moduleName}/${secondModuleName}/' + id,
 method: 'put',
 data: obj
 })

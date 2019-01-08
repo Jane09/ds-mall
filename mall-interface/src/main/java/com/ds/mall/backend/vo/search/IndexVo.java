@@ -1,4 +1,4 @@
-package com.ds.mall.api.vo.search;
+package com.ds.mall.backend.vo.search;
 
 import lombok.Getter;
 import lombok.Setter;

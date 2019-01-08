@@ -41,7 +41,7 @@ layui.config({
 			//设置数据源有两个方式。
 			//第一：在此页面通过ajax读取设置  举个栗子：
 			//---------这是第一个栗子----------
-			/*$.getJSON('/api/xxx',{moduleId:id},function(data){
+			/*$.getJSON('/backend/xxx',{moduleId:id},function(data){
 				navbar.set({
 					elem: '#side',
 					data: data
@@ -56,7 +56,7 @@ layui.config({
 			//---------这是第二个栗子----------
 			/*navbar.set({
 				elem: '#side',
-				url: '/api/xxx?moduleId='+id
+				url: '/backend/xxx?moduleId='+id
 			});
 			navbar.render();
 			navbar.on('click(side)', function(data) {
