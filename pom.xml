@@ -15,6 +15,7 @@
         <module>mall-backend</module>
         <module>mall-common</module>
         <module>mall-generator</module>
+        <module>mall-interface</module>
     </modules>
 
     <parent>
@@ -55,6 +56,11 @@
             <dependency>
                 <groupId>com.ds.mall</groupId>
                 <artifactId>mall-common</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ds.mall</groupId>
+                <artifactId>mall-auth-common</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
 
