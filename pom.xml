@@ -17,6 +17,7 @@
         <module>mall-generator</module>
         <module>mall-interface</module>
         <module>mall-uid</module>
+        <module>mall-cache</module>
     </modules>
 
     <parent>
