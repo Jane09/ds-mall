@@ -1,6 +1,7 @@
 package com.ds.mall.uid.thrift;
 
 import com.ds.mall.uid.AbstractModule;
+import com.ds.mall.uid.config.UidConfig;
 
 /**
  * @author tb
@@ -8,18 +9,12 @@ import com.ds.mall.uid.AbstractModule;
  */
 public class ThriftModule extends AbstractModule {
 
-    @Override
-    public void start() {
-
+    public ThriftModule(UidConfig uidConfig) {
+        super(uidConfig);
     }
 
     @Override
-    public void destroy() {
+    protected void doStart() throws Exception {
 
-    }
-
-    @Override
-    public boolean isStarted() {
-        return false;
     }
 }

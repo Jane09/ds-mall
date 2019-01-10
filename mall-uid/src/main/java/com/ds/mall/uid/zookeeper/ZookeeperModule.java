@@ -1,6 +1,7 @@
 package com.ds.mall.uid.zookeeper;
 
 import com.ds.mall.uid.AbstractModule;
+import com.ds.mall.uid.config.UidConfig;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -10,18 +11,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ZookeeperModule extends AbstractModule {
 
-    @Override
-    public void start() {
-
+    public ZookeeperModule(UidConfig uidConfig) {
+        super(uidConfig);
     }
 
     @Override
-    public void destroy() {
+    protected void doStart() throws Exception {
 
-    }
-
-    @Override
-    public boolean isStarted() {
-        return false;
     }
 }
