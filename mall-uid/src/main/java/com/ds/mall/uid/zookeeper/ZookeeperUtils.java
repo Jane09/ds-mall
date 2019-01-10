@@ -23,10 +23,10 @@ public final class ZookeeperUtils {
             .sessionTimeoutMs(12000)
             .retryPolicy(new BoundedExponentialBackoffRetry(2000,3000,3)).build();
         conn.start();
-//        System.out.println(addNode(conn,"/mall/uid",new byte[0],CreateMode.PERSISTENT_SEQUENTIAL));
-        List<String> children = getChildren(conn,"/mall",false);
-        System.out.println(JSON.toJSONString(children));
-        System.out.println(exists(conn,"/mall/uid0000000000",false));
+        System.out.println(addNode(conn,"/mall/uid",new byte[0],CreateMode.PERSISTENT_SEQUENTIAL));
+//        List<String> children = getChildren(conn,"/mall",false);
+//        System.out.println(JSON.toJSONString(children));
+//        System.out.println(exists(conn,"/mall/uid0000000000",false));
         conn.close();
     }
 

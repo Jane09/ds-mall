@@ -7,12 +7,28 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
-import org.apache.http.util.NetUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * /ds-mall
+ *      /p
+ *          /ip:port - workId
+ *          /ip:port - workId
+ *      /pseq
+ *          /pnode
+ *      /eseq
+ *          /ip:port - timestamp
+ *          /ip:port - timestamp
+ *      先校验持久化节点是否有 workId,
+ *      没有则，新增 持久化顺序节点，产生一个顺序workId，成功后保存至 持久化节点;
+ *      有则校验，周期性上传的 ip:port - timestamp < 当前时间戳
+ *      如果不存在，创建
+ *      得到所有 eseq ip:port集合
+ *      avg(sum（timestamp))
+ *
+ *
  * @author tb
  * @date 2019/1/9 17:25
  */
