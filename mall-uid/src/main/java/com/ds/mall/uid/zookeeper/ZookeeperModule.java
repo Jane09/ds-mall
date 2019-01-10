@@ -17,6 +17,6 @@ public class ZookeeperModule extends AbstractModule {
 
     @Override
     protected void doStart() throws Exception {
-
+        log.info("启动zookeeper");
     }
 }

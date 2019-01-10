@@ -9,7 +9,6 @@ import org.apache.thrift.server.TThreadPoolServer;
 import org.apache.thrift.transport.TServerSocket;
 import org.apache.thrift.transport.TServerTransport;
 import org.apache.thrift.transport.TTransportFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author tb
@@ -30,6 +29,7 @@ public class ThriftModule extends AbstractModule {
 
     @Override
     protected void doStart() throws Exception {
+        log.info("启动Thrift");
         TBinaryProtocol.Factory protocolFactory = new TBinaryProtocol.Factory();
         TTransportFactory transportFactory = new TTransportFactory();
         RPCService.Processor processor = new RPCService.Processor<RPCService.Iface>( thriftService );
@@ -43,12 +43,16 @@ public class ThriftModule extends AbstractModule {
             tArgs.minWorkerThreads(uidConfig.getMinWorkerThreads());
             tArgs.maxWorkerThreads(uidConfig.getMaxWorkerThreads());
             server = new TThreadPoolServer(tArgs);
-            log.info("thrift服务启动成功, 端口={}", uidConfig.getPort());
-            server.serve();
+//            server.serve();
+            started = true;
         } catch (Exception e) {
             log.error("thrift服务启动失败", e);
             if(null != server) {
                 server.stop();
+            }
+        }finally {
+            if(isStarted()) {
+                log.info("thrift服务启动成功, 端口={}", uidConfig.getPort());
             }
         }
     }
