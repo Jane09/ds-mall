@@ -8,90 +8,71 @@ import java.time.Instant;
  */
 public final class IdGenerator {
 
+    private static final long TWEPOCH = 1288834974657L;
+    private static final long WORKER_ID_BITS = 5L;
+    private static final long DATACENTER_ID_BITS = 5L;
+    private static final long MAX_WORKER_ID = ~(-1L << WORKER_ID_BITS);
+    private static final long MAX_DATACENTER_ID = ~(-1L << DATACENTER_ID_BITS);
+    private static final long SEQUENCE_BITS = 12L;
+    private static final long WORKER_ID_SHIFT = SEQUENCE_BITS;
+    private static final long DATACENTER_ID_SHIFT = SEQUENCE_BITS + WORKER_ID_BITS;
+    private static final long TIMESTAMP_LEFT_SHIFT = SEQUENCE_BITS + WORKER_ID_BITS + DATACENTER_ID_BITS;
+    private static final long SEQUENCE_MASK = ~(-1L << SEQUENCE_BITS);
+
+    private long workerId;
+    private long datacenterId;
+    private long sequence = 0L;
+    private long lastTimestamp = -1L;
+
     public static void main(String[] args) {
-        IdGenerator generator = new IdGenerator(3,2);
-        System.out.println(Instant.now().toEpochMilli());
-        System.out.println(generator.nextId());
+        IdGenerator idWorker = new IdGenerator(2, 3);
+        for (int i = 0; i < 100; i++) {
+            long id = idWorker.nextId();
+            System.out.println(id);
+        }
     }
-    /**
-     * 起始的时间戳
-     */
-    private final static long START_STMP = 1547097902754L;
 
-    /**
-     * 每一部分占用的位数
-     */
-    private final static long SEQUENCE_BIT = 12L; //序列号占用的位数
-    private final static long MACHINE_BIT = 5L;   //机器标识占用的位数
-    private final static long DATACENTER_BIT = 5L;//数据中心占用的位数
-
-    /**
-     * 每一部分的最大值
-     */
-    private final static long MAX_DATACENTER_NUM = ~(-1L << DATACENTER_BIT);
-    private final static long MAX_MACHINE_NUM = ~(-1L << MACHINE_BIT);
-    private final static long MAX_SEQUENCE = ~(-1L << SEQUENCE_BIT);
-
-    /**
-     * 每一部分向左的位移
-     */
-    private final static long MACHINE_LEFT = SEQUENCE_BIT;
-    private final static long DATACENTER_LEFT = SEQUENCE_BIT + MACHINE_BIT;
-    private final static long TIMESTMP_LEFT = DATACENTER_LEFT + DATACENTER_BIT;
-
-    private long datacenterId;  //数据中心
-    private long machineId;     //机器标识
-    private long sequence = 0L; //序列号
-    private long lastStmp = -1;//上一次时间戳
-
-    public IdGenerator(long datacenterId, long machineId) {
-        if (datacenterId > MAX_DATACENTER_NUM || datacenterId < 0) {
-            throw new IllegalArgumentException("datacenterId can't be greater than MAX_DATACENTER_NUM or less than 0");
+    public IdGenerator(long workerId, long datacenterId) {
+        if (workerId > MAX_WORKER_ID || workerId < 0) {
+            throw new IllegalArgumentException(String.format("worker Id can't be greater than %d or less than 0", MAX_WORKER_ID));
         }
-        if (machineId > MAX_MACHINE_NUM || machineId < 0) {
-            throw new IllegalArgumentException("machineId can't be greater than MAX_MACHINE_NUM or less than 0");
+        if (datacenterId > MAX_DATACENTER_ID || datacenterId < 0) {
+            throw new IllegalArgumentException(String.format("datacenter Id can't be greater than %d or less than 0", MAX_DATACENTER_ID));
         }
+        this.workerId = workerId;
         this.datacenterId = datacenterId;
-        this.machineId = machineId;
     }
 
-    /**
-     * 产生下一个ID
-     * @return 返回下一个ID
-     */
     public synchronized long nextId() {
-        long currStmp = getNewstmp();
-        if (currStmp < lastStmp) {
-            throw new RuntimeException("Clock moved backwards.  Refusing to generate id");
+        long timestamp = timeGen();
+        if (timestamp < lastTimestamp) {
+            throw new RuntimeException(String.format("Clock moved backwards.  Refusing to generate id for %d milliseconds", lastTimestamp - timestamp));
         }
-
-        if (currStmp == lastStmp) {
-            //相同毫秒内，序列号自增
-            sequence = (sequence + 1) & MAX_SEQUENCE;
-            //同一毫秒的序列数已经达到最大
-            if (sequence == 0L) {
-                currStmp = getNextMill();
+        if (lastTimestamp == timestamp) {
+            sequence = (sequence + 1) & SEQUENCE_MASK;
+            if (sequence == 0) {
+                timestamp = tilNextMillis(lastTimestamp);
             }
         } else {
-            //不同毫秒内，序列号置为0
             sequence = 0L;
         }
-        lastStmp = currStmp;
-        return (currStmp - START_STMP) << TIMESTMP_LEFT //时间戳部分
-                | datacenterId << DATACENTER_LEFT       //数据中心部分
-                | machineId << MACHINE_LEFT             //机器标识部分
-                | sequence;                             //序列号部分
+
+        lastTimestamp = timestamp;
+
+        return ((timestamp - TWEPOCH) << TIMESTAMP_LEFT_SHIFT) | (datacenterId << DATACENTER_ID_SHIFT) | (workerId << WORKER_ID_SHIFT) | sequence;
     }
 
-    private long getNextMill() {
-        long mill = getNewstmp();
-        while (mill <= lastStmp) {
-            mill = getNewstmp();
+    private long tilNextMillis(long lastTimestamp) {
+        long timestamp = timeGen();
+        while (timestamp <= lastTimestamp) {
+            timestamp = timeGen();
         }
-        return mill;
+        return timestamp;
     }
 
-    private long getNewstmp() {
-        return Instant.now().getEpochSecond();
+    private long timeGen() {
+        return Instant.now().toEpochMilli();
     }
+
+
 }
