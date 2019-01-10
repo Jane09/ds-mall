@@ -29,6 +29,7 @@ public class ThriftModule extends AbstractModule {
         TBinaryProtocol.Factory protocolFactory = new TBinaryProtocol.Factory();
         TTransportFactory transportFactory = new TTransportFactory();
         RPCService.Processor processor = new RPCService.Processor<RPCService.Iface>( thriftService );
+        TServer server = null;
         try {
             TServerTransport transport = new TServerSocket(uidConfig.getPort());
             TThreadPoolServer.Args tArgs = new TThreadPoolServer.Args(transport);
@@ -37,11 +38,16 @@ public class ThriftModule extends AbstractModule {
             tArgs.transportFactory(transportFactory);
             tArgs.minWorkerThreads(uidConfig.getMinWorkerThreads());
             tArgs.maxWorkerThreads(uidConfig.getMaxWorkerThreads());
-            TServer server = new TThreadPoolServer(tArgs);
+            server = new TThreadPoolServer(tArgs);
             log.info("thrift服务启动成功, 端口={}", uidConfig.getPort());
             server.serve();
         } catch (Exception e) {
             log.error("thrift服务启动失败", e);
+            if(null != server) {
+                server.stop();
+            }
         }
     }
+
+
 }
