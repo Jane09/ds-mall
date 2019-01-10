@@ -2,6 +2,7 @@ package com.ds.mall.uid.runner;
 
 import com.ds.mall.uid.config.UidConfig;
 import com.ds.mall.uid.thrift.ThriftModule;
+import com.ds.mall.uid.thrift.ThriftService;
 import com.ds.mall.uid.zookeeper.ZookeeperModule;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +17,19 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ModuleRunner implements CommandLineRunner {
 
+    private final UidConfig uidConfig;
+    private final ThriftService thriftService;
+
     @Autowired
-    private UidConfig uidConfig;
+    public ModuleRunner(UidConfig uidConfig, ThriftService thriftService) {
+        this.uidConfig = uidConfig;
+        this.thriftService = thriftService;
+    }
 
     @Override
     public void run(String... args) throws Exception {
         //启动module
-        ZookeeperModule zookeeper = new ZookeeperModule(uidConfig);
-        zookeeper.start();
-        ThriftModule thrift = new ThriftModule(uidConfig);
-        thrift.start();
+        new ZookeeperModule(uidConfig).start();
+        new ThriftModule(uidConfig).service(thriftService).start();
     }
 }

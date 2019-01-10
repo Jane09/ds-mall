@@ -9,6 +9,7 @@ import org.apache.thrift.server.TThreadPoolServer;
 import org.apache.thrift.transport.TServerSocket;
 import org.apache.thrift.transport.TServerTransport;
 import org.apache.thrift.transport.TTransportFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author tb
@@ -17,11 +18,14 @@ import org.apache.thrift.transport.TTransportFactory;
 @Slf4j
 public class ThriftModule extends AbstractModule {
 
-    private final ThriftService thriftService;
+    private ThriftService thriftService;
 
-    public ThriftModule(UidConfig uidConfig, ThriftService thriftService) {
+    public ThriftModule(UidConfig uidConfig) {
         super(uidConfig);
+    }
+    public ThriftModule service(ThriftService thriftService) {
         this.thriftService = thriftService;
+        return this;
     }
 
     @Override
