@@ -56,9 +56,7 @@ public final class IdGenerator {
         } else {
             sequence = 0L;
         }
-
         lastTimestamp = timestamp;
-
         return ((timestamp - TWEPOCH) << TIMESTAMP_LEFT_SHIFT) | (datacenterId << DATACENTER_ID_SHIFT) | (workerId << WORKER_ID_SHIFT) | sequence;
     }
 
