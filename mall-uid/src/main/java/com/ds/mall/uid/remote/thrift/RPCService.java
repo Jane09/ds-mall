@@ -5,7 +5,7 @@
  *
  * @generated
  */
-package com.ds.mall.uid.thrift;
+package com.ds.mall.uid.remote.thrift;
 
 /**
  * @author thrift generate

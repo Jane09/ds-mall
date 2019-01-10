@@ -1,4 +1,4 @@
-package com.ds.mall.uid.thrift;
+package com.ds.mall.uid.remote.thrift;
 
 import com.ds.mall.uid.AbstractModule;
 import com.ds.mall.uid.config.UidConfig;

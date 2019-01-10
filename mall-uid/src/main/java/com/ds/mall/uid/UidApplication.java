@@ -1,10 +1,9 @@
 package com.ds.mall.uid;
 
 import com.ds.mall.uid.config.UidConfig;
-import com.ds.mall.uid.thrift.ThriftModule;
-import com.ds.mall.uid.thrift.ThriftService;
+import com.ds.mall.uid.remote.thrift.ThriftModule;
+import com.ds.mall.uid.remote.thrift.ThriftService;
 import com.ds.mall.uid.zookeeper.ZookeeperModule;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;

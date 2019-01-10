@@ -1,9 +1,8 @@
 package com.ds.mall.uid.runner;
 
 import com.ds.mall.uid.config.UidConfig;
-import com.ds.mall.uid.thrift.ThriftModule;
-import com.ds.mall.uid.thrift.ThriftService;
-import com.ds.mall.uid.zookeeper.ZookeeperModule;
+import com.ds.mall.uid.remote.thrift.ThriftModule;
+import com.ds.mall.uid.remote.thrift.ThriftService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

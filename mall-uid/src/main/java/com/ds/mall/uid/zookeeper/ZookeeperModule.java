@@ -33,6 +33,7 @@ import java.util.List;
  * @date 2019/1/9 17:25
  */
 @Slf4j
+
 public class ZookeeperModule extends AbstractModule {
 
     private CuratorFramework conn;

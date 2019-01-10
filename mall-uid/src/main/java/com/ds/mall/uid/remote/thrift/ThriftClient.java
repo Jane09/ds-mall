@@ -1,4 +1,4 @@
-package com.ds.mall.uid.thrift;
+package com.ds.mall.uid.remote.thrift;
 
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TBinaryProtocol;
