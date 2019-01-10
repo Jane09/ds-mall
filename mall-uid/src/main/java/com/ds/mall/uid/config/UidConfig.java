@@ -1,5 +1,7 @@
 package com.ds.mall.uid.config;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -9,6 +11,10 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @ConfigurationProperties(prefix = "uid")
+@Getter
+@Setter
 public class UidConfig {
 
+    private Integer datacenter;
+    private int port;
 }

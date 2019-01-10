@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: mall-uid
+server:
+  port: 7777

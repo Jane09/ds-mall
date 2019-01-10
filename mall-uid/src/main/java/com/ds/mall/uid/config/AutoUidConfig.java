@@ -11,5 +11,4 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan({"com.ds.mall.uid"})
 public class AutoUidConfig {
 
-
 }
