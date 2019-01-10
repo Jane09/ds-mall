@@ -11,5 +11,18 @@
 
     <artifactId>mall-backend-api</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.ds.mall</groupId>
+            <artifactId>mall-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ds.mall</groupId>
+            <artifactId>mall-auth-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ds.mall</groupId>
+            <artifactId>mall-interface</artifactId>
+        </dependency>
+    </dependencies>
 </project>
