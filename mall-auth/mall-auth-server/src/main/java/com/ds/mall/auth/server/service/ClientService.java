@@ -12,23 +12,4 @@ import java.util.List;
  */
 public class ClientService extends AbstractBaseService<ClientMapper, Client> {
 
-    @Override
-    public List<Client> selectListByIds(List<Object> ids) {
-        return null;
-    }
-
-    @Override
-    public Long selectCountAll() {
-        return null;
-    }
-
-    @Override
-    public void deleteBatchByIds(List<Object> ids) {
-
-    }
-
-    @Override
-    public void updateBatch(List<Client> entitys) {
-
-    }
 }

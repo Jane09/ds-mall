@@ -86,6 +86,26 @@ public abstract class AbstractBaseService<M extends Mapper<T>, T> implements Bas
 
     }
 
+    @Override
+    public List<T> selectListByIds(List<Object> ids) {
+        return null;
+    }
+
+    @Override
+    public Long selectCountAll() {
+        return null;
+    }
+
+    @Override
+    public void deleteBatchByIds(List<Object> ids) {
+
+    }
+
+    @Override
+    public void updateBatch(List<T> entitys) {
+
+    }
+
     public List<T> selectByExample(Object example) {
         return mapper.selectByExample(example);
     }
