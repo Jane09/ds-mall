@@ -6,7 +6,7 @@ import com.ds.mall.cache.annotation.CacheScope;
  * @author tb
  * @date 2019/1/10 16:42
  */
-public abstract class IKeyGenerator {
+public abstract class AbstractKeyGenerator {
     private static final String UNDERLINE = "_";
 
     protected String getKey(String key, CacheScope scope, Class<?>[] parameterTypes, Object[] args) {

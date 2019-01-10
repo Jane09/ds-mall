@@ -1,5 +1,7 @@
 package com.ds.mall.cache.annotation;
 
+import com.ds.mall.cache.parser.AbstractKeyGenerator;
+import com.ds.mall.cache.parser.DefaultKeyGenerator;
 import com.ds.mall.cache.parser.DefaultResultParser;
 import com.ds.mall.cache.parser.IResultParser;
 
@@ -28,4 +30,5 @@ public @interface Cache {
 
     Class<? extends IResultParser> parser() default DefaultResultParser.class;
 
+    Class<? extends AbstractKeyGenerator> generator() default DefaultKeyGenerator.class;
 }
