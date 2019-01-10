@@ -17,5 +17,7 @@ public class UidConfig {
 
     private Integer datacenter;
     private int port;
+    private int minWorkerThreads = 1;
+    private int maxWorkerThreads = 1;
     private ZookeeperConfig zookeeper;
 }
