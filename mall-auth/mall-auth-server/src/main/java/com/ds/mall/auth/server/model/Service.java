@@ -10,4 +10,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Service {
+
+    private Long id;
+    private String serviceId;
+    private String clientId;
+    private String description;
 }
