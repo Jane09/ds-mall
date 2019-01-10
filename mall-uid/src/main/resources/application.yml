@@ -11,8 +11,9 @@ uid:
       - localhost
       - localhost2
     port: 2181
-    persistent: mall_uid_persist_seq
-    ephemeral: mall_uid_ephemeral_seq
+    root: "/ds-mall"
+    persistent: "/pseq"
+    ephemeral: "/eseq"
     sessionTimeoutMs: 20000
     connectionTimeoutMs: 15000
     retryTimes: 20

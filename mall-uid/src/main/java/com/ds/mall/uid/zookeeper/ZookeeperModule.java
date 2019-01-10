@@ -2,10 +2,12 @@ package com.ds.mall.uid.zookeeper;
 
 import com.ds.mall.uid.AbstractModule;
 import com.ds.mall.uid.config.UidConfig;
+import com.ds.mall.uid.config.ZookeeperConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
+import org.apache.http.util.NetUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +29,7 @@ public class ZookeeperModule extends AbstractModule {
     protected void doStart() throws Exception {
         log.info("启动zookeeper");
         init();
-
+        register();
     }
 
 
@@ -47,9 +49,16 @@ public class ZookeeperModule extends AbstractModule {
             }
             conn = builder.build();
         }catch (Exception ex) {
-
+            log.error("初始化zookeeper连接失败",ex);
         }
+    }
 
+
+    private void register(){
+        ZookeeperConfig config = this.uidConfig.getZookeeper();
+        String root = config.getRoot();
+        String pseq = config.getPersistent();
+        String ipport = "ip:port";
     }
 
 
