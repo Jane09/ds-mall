@@ -12,7 +12,6 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * TODO 改进，将配置信息进行抽离，可以动态配置
  * @author tb
  * @date 2019/1/7 18:15
  */
@@ -24,7 +23,9 @@ public final class JwtUtils {
 
     public static void main(String[] args) throws Exception {
         IJwtData jwtData = new JwtData("hello","1212","tom");
-        System.out.println(generateToken(jwtData,"",1000));
+        Map<String,byte[]> keyPair = RsaUtils.generateKey("123456");
+        byte[] priByte = keyPair.get("pri");
+        System.out.println(generateToken(jwtData,priByte,1000));
     }
 
     /**
@@ -43,6 +44,8 @@ public final class JwtUtils {
                 .signWith(SignatureAlgorithm.RS256, RsaUtils.getPrivateKey(priKeyPath))
                 .compact();
     }
+
+
 
     /**
      * 密钥加密token
@@ -64,13 +67,13 @@ public final class JwtUtils {
     /**
      * 公钥解析token
      */
-    public static Jws<Claims> parserToken(String token, String pubKeyPath) throws Exception {
+    private static Jws<Claims> parserToken(String token, String pubKeyPath) throws Exception {
         return Jwts.parser().setSigningKey(RsaUtils.getPublicKey(pubKeyPath)).parseClaimsJws(token);
     }
     /**
      * 公钥解析token
      */
-    public static Jws<Claims> parserToken(String token, byte[] pubKey) throws Exception {
+    private static Jws<Claims> parserToken(String token, byte[] pubKey) throws Exception {
         return Jwts.parser().setSigningKey(RsaUtils.getPublicKey(pubKey)).parseClaimsJws(token);
     }
     /**
@@ -85,11 +88,6 @@ public final class JwtUtils {
     }
     /**
      * 获取token中的用户信息
-     *
-     * @param token
-     * @param pubKey
-     * @return
-     * @throws Exception
      */
     public static IJwtData getInfoFromToken(String token, byte[] pubKey) throws Exception {
         Jws<Claims> claimsJws = parserToken(token, pubKey);

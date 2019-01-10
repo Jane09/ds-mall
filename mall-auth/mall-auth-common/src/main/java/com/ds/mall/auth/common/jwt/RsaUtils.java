@@ -24,7 +24,8 @@ public class RsaUtils {
         SecureRandom secureRandom = new SecureRandom("123".getBytes());
         keyPairGenerator.initialize(1024, secureRandom);
         KeyPair keyPair = keyPairGenerator.genKeyPair();
-        System.out.println(keyPair.getPublic().getEncoded());
+        System.out.println(toHexString(keyPair.getPublic().getEncoded()));
+        System.out.println(toHexString(keyPair.getPrivate().getEncoded()));
     }
     /**
      * 获取公钥
@@ -35,6 +36,9 @@ public class RsaUtils {
      */
     public static PublicKey getPublicKey(String filename) throws Exception {
         InputStream resourceAsStream = RsaUtils.class.getClassLoader().getResourceAsStream(filename);
+        if(null == resourceAsStream) {
+            throw new RuntimeException("Get public rsa key failed, filename = "+filename);
+        }
         DataInputStream dis = new DataInputStream(resourceAsStream);
         byte[] keyBytes = new byte[resourceAsStream.available()];
         dis.readFully(keyBytes);
@@ -53,6 +57,9 @@ public class RsaUtils {
      */
     public static PrivateKey getPrivateKey(String filename) throws Exception {
         InputStream resourceAsStream = RsaUtils.class.getClassLoader().getResourceAsStream(filename);
+        if(null == resourceAsStream) {
+            throw new RuntimeException("Get private rsa key failed, filename = "+filename);
+        }
         DataInputStream dis = new DataInputStream(resourceAsStream);
         byte[] keyBytes = new byte[resourceAsStream.available()];
         dis.readFully(keyBytes);
@@ -64,10 +71,6 @@ public class RsaUtils {
 
     /**
      * 获取公钥
-     *
-     * @param publicKey
-     * @return
-     * @throws Exception
      */
     public static PublicKey getPublicKey(byte[] publicKey) throws Exception {
         X509EncodedKeySpec spec = new X509EncodedKeySpec(publicKey);
@@ -77,10 +80,6 @@ public class RsaUtils {
 
     /**
      * 获取密钥
-     *
-     * @param privateKey
-     * @return
-     * @throws Exception
      */
     public static PrivateKey getPrivateKey(byte[] privateKey) throws Exception {
         PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(privateKey);
@@ -90,12 +89,6 @@ public class RsaUtils {
 
     /**
      * 生存rsa公钥和密钥
-     *
-     * @param publicKeyFilename
-     * @param privateKeyFilename
-     * @param password
-     * @throws IOException
-     * @throws NoSuchAlgorithmException
      */
     public static void generateKey(String publicKeyFilename, String privateKeyFilename, String password) throws IOException, NoSuchAlgorithmException {
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
@@ -114,10 +107,6 @@ public class RsaUtils {
 
     /**
      * 生存rsa公钥
-     *
-     * @param password
-     * @throws IOException
-     * @throws NoSuchAlgorithmException
      */
     public static byte[] generatePublicKey(String password) throws IOException, NoSuchAlgorithmException {
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
@@ -129,10 +118,6 @@ public class RsaUtils {
 
     /**
      * 生存rsa公钥
-     *
-     * @param password
-     * @throws IOException
-     * @throws NoSuchAlgorithmException
      */
     public static byte[] generatePrivateKey(String password) throws IOException, NoSuchAlgorithmException {
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
