@@ -17,4 +17,5 @@ public class UidConfig {
 
     private Integer datacenter;
     private int port;
+    private ZookeeperConfig zookeeper;
 }

@@ -16,4 +16,12 @@ public class ZookeeperConfig {
     private int port;
     private List<String> servers;
     private String persistent;
+    private String ephemeral;
+    private int connectionTimeoutMs;
+    private int sessionTimeoutMs;
+    private int retryTimes;
+    private int retryIntervalMs;
+    private int retryIntervalceilingMs;
+    private int heartbeatIntervalMs;
+    private int averageTimestampThreshold;
 }
