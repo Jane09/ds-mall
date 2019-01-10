@@ -11,7 +11,7 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
-public class Client implements Serializable {
+public class Clients implements Serializable {
 
     private Integer id;
 

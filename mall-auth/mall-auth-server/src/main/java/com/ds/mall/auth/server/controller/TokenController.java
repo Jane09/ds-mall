@@ -1,7 +1,7 @@
 package com.ds.mall.auth.server.controller;
 
 /**
- * Token
+ * Token发放
  * @author tb
  * @date 2019/1/10 14:10
  */

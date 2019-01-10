@@ -9,7 +9,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class Service {
+public class Services {
 
     private Long id;
     private String serviceId;

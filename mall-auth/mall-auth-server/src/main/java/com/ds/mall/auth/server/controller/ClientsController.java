@@ -5,5 +5,5 @@ package com.ds.mall.auth.server.controller;
  * @author tb
  * @date 2019/1/10 15:22
  */
-public class ClientController {
+public class ClientsController {
 }
