@@ -2,6 +2,7 @@ package com.ds.mall.common.utils;
 
 import com.ds.mall.common.constant.Constants;
 import com.ds.mall.common.context.DsMallContext;
+import com.ds.mall.common.service.Mid;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -9,6 +10,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
@@ -27,6 +29,7 @@ public final class EntityUtils {
     private static final String UPDATE_BY = "updateBy";
     private static final String UPDATE_IP = "updateIp";
     private static final String UPDATE_AT = "updateAt";
+    private static final String ID = "id";
 
     private static final String[] CREATE_FIELDS = {CREATE_BY,CREATE_AT,CREATE_IP};
     private static final String[] UPDATE_FIELDS = {UPDATE_BY,UPDATE_AT,UPDATE_IP};
@@ -56,6 +59,13 @@ public final class EntityUtils {
         if(null != field && field.getType().equals(Date.class)) {
             values = new Object []{createBy,new Date(),createIp};
             setDefaultValues(entity,CREATE_FIELDS,values);
+        }
+        Field idField = ReflectionUtils.getAccessibleField(entity,ID);
+        if(idField != null) {
+            Annotation mid = idField.getAnnotation(Mid.class);
+            if(mid != null){
+                setDefaultValues(entity,new String[]{ID},new Long[]{1L});
+            }
         }
     }
 
