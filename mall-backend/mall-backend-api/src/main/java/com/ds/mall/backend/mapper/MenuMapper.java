@@ -8,5 +8,5 @@ import tk.mybatis.mapper.common.Mapper;
  * @date 2019/1/10 15:57
  */
 public interface MenuMapper extends Mapper<Menu> {
-    
+
 }
