@@ -11,6 +11,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  *  客户认证
  *  服务鉴权
  *
+ *  client m - n service
+ *
  * @author tb
  * @date 2019/1/7 19:02
  */
