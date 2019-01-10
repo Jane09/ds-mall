@@ -1,5 +1,8 @@
 package com.ds.mall.cache.annotation;
 
+import com.ds.mall.cache.parser.DefaultResultParser;
+import com.ds.mall.cache.parser.IResultParser;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -23,5 +26,6 @@ public @interface Cache {
 
     Class[] result() default Object.class;
 
+    Class<? extends IResultParser> parser() default DefaultResultParser.class;
 
 }
