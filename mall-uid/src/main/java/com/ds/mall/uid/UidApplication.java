@@ -1,8 +1,14 @@
 package com.ds.mall.uid;
 
+import com.ds.mall.uid.config.UidConfig;
+import com.ds.mall.uid.thrift.ThriftModule;
+import com.ds.mall.uid.thrift.ThriftService;
+import com.ds.mall.uid.zookeeper.ZookeeperModule;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ApplicationContext;
 
 /**
  * @author tb
@@ -12,8 +18,12 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 public class UidApplication {
 
     public static void main(String[] args) {
-        new SpringApplicationBuilder(UidApplication.class)
+        ApplicationContext ctx = new SpringApplicationBuilder(UidApplication.class)
                 .web(WebApplicationType.SERVLET)
                 .run(args);
+        UidConfig uidConfig = ctx.getBean(UidConfig.class);
+        ThriftService thriftService = ctx.getBean(ThriftService.class);
+        new ZookeeperModule(uidConfig).start();
+        new ThriftModule(uidConfig).service(thriftService).start();
     }
 }

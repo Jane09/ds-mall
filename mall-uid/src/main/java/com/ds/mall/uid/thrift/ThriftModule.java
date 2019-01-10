@@ -43,8 +43,8 @@ public class ThriftModule extends AbstractModule {
             tArgs.minWorkerThreads(uidConfig.getMinWorkerThreads());
             tArgs.maxWorkerThreads(uidConfig.getMaxWorkerThreads());
             server = new TThreadPoolServer(tArgs);
-//            server.serve();
             started = true;
+            server.serve();
         } catch (Exception e) {
             log.error("thrift服务启动失败", e);
             if(null != server) {

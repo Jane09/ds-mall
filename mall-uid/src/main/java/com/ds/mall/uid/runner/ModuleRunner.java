@@ -29,7 +29,7 @@ public class ModuleRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         //启动module
-        new ZookeeperModule(uidConfig).start();
-        new ThriftModule(uidConfig).service(thriftService).start();
+//        new ZookeeperModule(uidConfig).start();
+//        new ThriftModule(uidConfig).service(thriftService).start();
     }
 }
