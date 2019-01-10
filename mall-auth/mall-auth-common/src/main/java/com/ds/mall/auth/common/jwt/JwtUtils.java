@@ -36,13 +36,12 @@ public final class JwtUtils {
         claims.put(AuthConstants.JWT_CLIENT_NAME, jwtData.getClientName());
         claims.put(EXPIRES,expires);
         claims.put(RANDOM, UUID.randomUUID());
-        String compactJws = Jwts.builder()
+        return Jwts.builder()
                 .setSubject(jwtData.getUsername())
                 .addClaims(claims)
                 .setExpiration(DateTime.now().plusSeconds(expire).toDate())
                 .signWith(SignatureAlgorithm.RS256, RsaUtils.getPrivateKey(priKeyPath))
                 .compact();
-        return compactJws;
     }
 
     /**
@@ -52,15 +51,14 @@ public final class JwtUtils {
         Map<String,Object> claims = new HashMap<>();
         claims.put(AuthConstants.JWT_CLIENT_ID, jwtData.getClientId());
         claims.put(AuthConstants.JWT_CLIENT_NAME, jwtData.getClientName());
-        claims.put(EXPIRES,expires);
         claims.put(RANDOM, UUID.randomUUID());
-        String compactJws = Jwts.builder()
+        claims.put(EXPIRES,expires);
+        return Jwts.builder()
                 .setSubject(jwtData.getUsername())
                 .setExpiration(DateTime.now().plusSeconds(expire).toDate())
                 .signWith(SignatureAlgorithm.RS256, RsaUtils.getPrivateKey(priKey))
                 .addClaims(claims)
                 .compact();
-        return compactJws;
     }
 
     /**
@@ -81,7 +79,9 @@ public final class JwtUtils {
     public static IJwtData getInfoFromToken(String token, String pubKeyPath) throws Exception {
         Jws<Claims> claimsJws = parserToken(token, pubKeyPath);
         Claims body = claimsJws.getBody();
-        return new JwtData(body.getSubject(), objectToString(body.get(AuthConstants.JWT_CLIENT_ID)), objectToString(body.get(AuthConstants.JWT_CLIENT_NAME)));
+        return new JwtData(body.getSubject(),
+                objectToString(body.get(AuthConstants.JWT_CLIENT_ID)),
+                objectToString(body.get(AuthConstants.JWT_CLIENT_NAME)));
     }
     /**
      * 获取token中的用户信息
@@ -94,7 +94,9 @@ public final class JwtUtils {
     public static IJwtData getInfoFromToken(String token, byte[] pubKey) throws Exception {
         Jws<Claims> claimsJws = parserToken(token, pubKey);
         Claims body = claimsJws.getBody();
-        return new JwtData(body.getSubject(), objectToString(body.get(AuthConstants.JWT_CLIENT_ID)), objectToString(body.get(AuthConstants.JWT_CLIENT_NAME)));
+        return new JwtData(body.getSubject(),
+                objectToString(body.get(AuthConstants.JWT_CLIENT_ID)),
+                objectToString(body.get(AuthConstants.JWT_CLIENT_NAME)));
     }
 
 
