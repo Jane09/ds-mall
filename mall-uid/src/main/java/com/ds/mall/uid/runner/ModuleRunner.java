@@ -1,8 +1,6 @@
 package com.ds.mall.uid.runner;
 
 import com.ds.mall.uid.config.UidConfig;
-import com.ds.mall.uid.remote.thrift.ThriftModule;
-import com.ds.mall.uid.remote.thrift.ThriftService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -17,12 +15,10 @@ import org.springframework.context.annotation.Configuration;
 public class ModuleRunner implements CommandLineRunner {
 
     private final UidConfig uidConfig;
-    private final ThriftService thriftService;
 
     @Autowired
-    public ModuleRunner(UidConfig uidConfig, ThriftService thriftService) {
+    public ModuleRunner(UidConfig uidConfig) {
         this.uidConfig = uidConfig;
-        this.thriftService = thriftService;
     }
 
     @Override
