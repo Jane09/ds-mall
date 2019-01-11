@@ -72,6 +72,7 @@ public class ZookeeperModule extends AbstractModule {
         log.info("启动zookeeper");
         init();
         register();
+        log.info("启动zookeeper成功");
     }
 
 
