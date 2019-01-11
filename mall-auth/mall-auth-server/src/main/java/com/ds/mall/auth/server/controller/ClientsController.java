@@ -1,5 +1,8 @@
 package com.ds.mall.auth.server.controller;
 
+import com.ds.mall.auth.server.config.AuthConfig;
+import com.ds.mall.auth.server.service.IClientsService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,7 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/clients")
+@RequiredArgsConstructor
 public class ClientsController {
+
+    private final AuthConfig authConfig;
+    private final IClientsService clientsService;
 
 
 }
