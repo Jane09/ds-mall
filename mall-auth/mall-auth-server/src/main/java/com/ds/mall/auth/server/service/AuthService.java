@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 public class AuthService implements IAuthService {
 
     private final FeignApi feignApi;
+    private final JwtService jwtService;
 
     @Override
     public String login(LoginRequest request) throws Exception {
