@@ -9,7 +9,18 @@ import com.ds.mall.auth.server.model.LoginRequest;
  */
 public interface IAuthService {
 
+    /**
+     * 登录获取token
+     */
     String login(LoginRequest request) throws Exception;
+
+    /**
+     * 刷新token
+     */
     String refresh(String oldToken) throws Exception;
-    void validate(String token) throws Exception;
+
+    /**
+     * 校验token的合法性
+     */
+    void verify(String token) throws Exception;
 }

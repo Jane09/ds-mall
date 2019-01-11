@@ -1,6 +1,5 @@
 package com.ds.mall.auth.server.service;
 
-import com.ds.mall.auth.common.jwt.JwtUtils;
 import com.ds.mall.auth.server.feign.FeignApi;
 import com.ds.mall.auth.server.model.LoginRequest;
 import com.ds.mall.backend.vo.user.UserVo;
@@ -34,7 +33,7 @@ public class AuthService implements IAuthService {
     }
 
     @Override
-    public void validate(String token) throws Exception {
+    public void verify(String token) throws Exception {
 
     }
 }
