@@ -1,6 +1,6 @@
 package com.ds.mall.auth.server.config;
 
-import com.ds.mall.auth.server.interceptor.ClientsFeignInterceptor;
+import com.ds.mall.auth.server.interceptor.FeignInterceptor;
 import com.ds.mall.common.exception.AuthExceptionHanlder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,7 +29,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 
     @Bean
-    public ClientsFeignInterceptor feignInterceptor(){
-        return new ClientsFeignInterceptor();
+    public FeignInterceptor feignInterceptor(){
+        return new FeignInterceptor();
     }
 }
