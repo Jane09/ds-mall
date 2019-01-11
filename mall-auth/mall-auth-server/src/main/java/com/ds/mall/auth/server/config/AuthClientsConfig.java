@@ -9,7 +9,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class AuthClientConfig {
+public class AuthClientsConfig {
 
     private String id;
     private String secret;

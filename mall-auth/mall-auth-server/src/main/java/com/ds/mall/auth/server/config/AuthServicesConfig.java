@@ -9,5 +9,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AuthServicesConfig {
-
+    private String id;
+    private String secret;
+    private String tokenHeader;
+    private int expire;
+    private String rsa;
 }

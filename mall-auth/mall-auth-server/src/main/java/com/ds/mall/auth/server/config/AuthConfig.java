@@ -17,7 +17,7 @@ public class AuthConfig {
 
     private AuthServicesConfig server;
 
-    private AuthClientConfig client;
+    private AuthClientsConfig client;
 
     private JwtConfig jwt;
 }
