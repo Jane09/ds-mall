@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author tb
  * @date 2019/1/10 14:42
  */
-@FeignClient(value = FeginClient.LOGIN_SERVICE)
-public interface FeginClient {
+@FeignClient(value = FeignApi.LOGIN_SERVICE)
+public interface FeignApi {
 
     String LOGIN_SERVICE = "ace-admin";
     String LOGIN_URL = "/api/user/validate";

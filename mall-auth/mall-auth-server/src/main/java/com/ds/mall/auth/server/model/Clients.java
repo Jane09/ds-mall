@@ -1,5 +1,6 @@
 package com.ds.mall.auth.server.model;
 
+import com.ds.mall.backend.BaseCreate;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,9 +12,9 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
-public class Clients implements Serializable {
+public class Clients extends BaseCreate implements Serializable {
 
-    private Integer id;
+    private Long id;
 
     private String code;
 
