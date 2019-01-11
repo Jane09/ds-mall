@@ -18,6 +18,7 @@
         <module>mall-interface</module>
         <module>mall-uid</module>
         <module>mall-cache</module>
+        <module>mall-seckill</module>
     </modules>
 
     <parent>
