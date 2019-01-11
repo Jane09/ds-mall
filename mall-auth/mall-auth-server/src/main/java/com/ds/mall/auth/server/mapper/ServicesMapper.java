@@ -9,4 +9,5 @@ import tk.mybatis.mapper.common.Mapper;
  */
 public interface ServicesMapper extends Mapper<Services> {
 
+    void delByServiceId(String serviceId);
 }
