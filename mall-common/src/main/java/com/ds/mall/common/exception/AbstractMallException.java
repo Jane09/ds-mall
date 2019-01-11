@@ -20,6 +20,10 @@ public class AbstractMallException extends RuntimeException {
         this.status = code.getCode();
     }
 
+    public AbstractMallException(Throwable cause) {
+        super(cause);
+    }
+
     public AbstractMallException(String message) {
         super(message);
     }

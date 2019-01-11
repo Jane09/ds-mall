@@ -53,6 +53,12 @@ public final class ZookeeperUtils {
         return conn.create().creatingParentsIfNeeded().withMode(mode).withACL(ZooDefs.Ids.OPEN_ACL_UNSAFE).forPath(path,data);
     }
 
+    public static void setData(CuratorFramework conn, String path, byte[] data) throws Exception {
+        if(!exists(conn,path,false)) {
+            conn.setData().forPath(path,data);
+        }
+    }
+
     public static List<String> getChildren(CuratorFramework conn, String path, boolean watched) throws Exception {
         if(!exists(conn,path,watched)){
             return null;

@@ -1,6 +1,7 @@
 package com.ds.mall.common.utils;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -24,5 +25,12 @@ public final class DateUtils {
             return df.format(date);
         }
         return null;
+    }
+
+    public static String format(long timestamp, String pattern) {
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(timestamp);
+        return sdf.format(c.getTime());
     }
 }

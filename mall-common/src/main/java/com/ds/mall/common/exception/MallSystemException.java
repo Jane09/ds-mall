@@ -9,4 +9,8 @@ public class MallSystemException extends AbstractMallException {
     public MallSystemException(String message) {
         super(message, ExceptionCode.SYSTEM_ERROR);
     }
+
+    public MallSystemException(Throwable cause) {
+        super(cause);
+    }
 }
