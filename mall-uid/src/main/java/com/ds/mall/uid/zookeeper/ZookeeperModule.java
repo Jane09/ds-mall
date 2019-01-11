@@ -72,7 +72,6 @@ public class ZookeeperModule extends AbstractModule {
         log.info("启动zookeeper");
         init();
         register();
-        //启动定时上传
     }
 
 
@@ -124,7 +123,6 @@ public class ZookeeperModule extends AbstractModule {
             }
         }else {
             workId = getWorkId(path);
-
         }
         if(!ZookeeperUtils.exists(conn,tmpath,false)){
             ZookeeperUtils.addNode(conn,tmpath,NetUtils.longToBytes(getNow()),CreateMode.EPHEMERAL);
