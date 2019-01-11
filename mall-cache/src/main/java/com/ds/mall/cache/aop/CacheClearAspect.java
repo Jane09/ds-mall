@@ -5,7 +5,10 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
+
+import java.lang.reflect.Method;
 
 /**
  * @author tb
@@ -21,7 +24,12 @@ public class CacheClearAspect {
 
     @Around("point()&&@annotation(clear)")
     public Object interceptor(ProceedingJoinPoint joinPoint, CacheClear clear) throws Throwable {
-        
+        final MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        final Method method = signature.getMethod();
+        final Class<?>[] parameterTypes = method.getParameterTypes();
+        final Object[] args = joinPoint.getArgs();
+
+
         return null;
     }
 }
