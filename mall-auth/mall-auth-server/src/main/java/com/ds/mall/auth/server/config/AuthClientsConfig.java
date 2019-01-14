@@ -11,9 +11,15 @@ import lombok.Setter;
 @Setter
 public class AuthClientsConfig {
 
+    //注册到consul的服务名称（不区分大小）
     private String id;
+    //数据库设定的服务密码
     private String secret;
-    private String tokenHeader;
+    //超时
     private int expire;
-    private String rsa;
+    //RSA密码
+    private String password;
+    //初始化之后生成的密钥对
+    private byte[] pubKey;
+    private byte[] priKey;
 }

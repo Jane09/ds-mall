@@ -15,9 +15,12 @@ import org.springframework.stereotype.Component;
 @Setter
 public class AuthConfig {
 
-    private AuthServicesConfig server;
-
-    private AuthClientsConfig client;
-
+    //请求头里面添加的header参数名称
+    private String tokenHeader;
+    //程序集群内部之间的访问配置
+    private AuthServicesConfig services;
+    //外部访问的程序控制
+    private AuthClientsConfig clients;
+    //JWT配置相关
     private JwtConfig jwt;
 }

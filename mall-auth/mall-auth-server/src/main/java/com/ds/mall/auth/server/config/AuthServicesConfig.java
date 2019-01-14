@@ -9,9 +9,15 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AuthServicesConfig {
-    private String id;
+    //服务注册到consul的名称
+    private String code;
+    //密钥
     private String secret;
-    private String tokenHeader;
+    //超时
     private int expire;
-    private String rsa;
+    //RSA密码
+    private String password;
+    //初始化之后生成的密钥对
+    private byte[] pubKey;
+    private byte[] priKey;
 }

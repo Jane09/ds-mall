@@ -10,8 +10,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class JwtConfig {
-
-    private String tokenHeader;
+    //token超时时间
     private int expire;
+    //密钥
     private String secret;
 }

@@ -43,7 +43,7 @@ public class AuthController {
     @RequestMapping(value = "/refresh", method = RequestMethod.GET)
     public ObjectResponse<String> refreshAndGetAuthenticationToken(
             HttpServletRequest request) throws Exception {
-        String token = request.getHeader(authConfig.getJwt().getTokenHeader());
+        String token = request.getHeader(authConfig.getTokenHeader());
         String refreshedToken = authService.refresh(token);
         return new ObjectResponse<>().data(refreshedToken);
     }
