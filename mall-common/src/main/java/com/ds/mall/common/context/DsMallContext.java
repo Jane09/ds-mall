@@ -43,6 +43,17 @@ public final class DsMallContext {
     public static void setClientId(String clientId) {
         set(Constants.CONTEXT_CLIENT_ID,clientId);
     }
+
+    public static void set(String clientId,String clientName,String clientToken) {
+        setClientId(clientId);
+        setClientName(clientName);
+        setClientToken(clientToken);
+    }
+
+    public static void clear(){
+        threadLocal.remove();
+    }
+
     public static String getClientId() {
         return getByKey(Constants.CONTEXT_CLIENT_ID);
     }

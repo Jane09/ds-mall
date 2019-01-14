@@ -1,7 +1,7 @@
 package com.ds.mall.auth.server.service;
 
 import com.ds.mall.auth.server.mapper.ServicesMapper;
-import com.ds.mall.auth.server.model.Services;
+import com.ds.mall.auth.server.model.ClientAccess;
 import com.ds.mall.common.service.AbstractBaseService;
 import org.springframework.stereotype.Service;
 
@@ -10,5 +10,5 @@ import org.springframework.stereotype.Service;
  * @date 2019/1/10 15:33
  */
 @Service
-public class ServicesService extends AbstractBaseService<ServicesMapper, Services> {
+public class ServicesService extends AbstractBaseService<ServicesMapper, ClientAccess> {
 }

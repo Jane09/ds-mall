@@ -13,9 +13,11 @@ import java.util.Objects;
 @Getter
 @AllArgsConstructor
 public class JwtData implements IJwtData, Serializable {
-
+    //服务编码，如mall-gate
     private String clientId;
+    //服务名称，如 访问网关
     private String clientName;
+    //唯一性表示，如 ID
     private String username;
 
     @Override

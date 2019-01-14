@@ -16,4 +16,7 @@ public class BaseCreate implements Serializable {
     private String createBy;
     private Date createAt;
     private String createIp;
+    private String updateBy;
+    private Date updateAt;
+    private String updateIp;
 }

@@ -12,7 +12,7 @@ import lombok.Setter;
 public class AuthClientsConfig {
 
     //注册到consul的服务名称（不区分大小）
-    private String id;
+    private String code;
     //数据库设定的服务密码
     private String secret;
     //超时

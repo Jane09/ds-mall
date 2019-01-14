@@ -20,7 +20,7 @@ public class AuthConfig {
     //程序集群内部之间的访问配置
     private AuthServicesConfig services;
     //外部访问的程序控制
-    private AuthClientsConfig clients;
+    private AuthClientsConfig client;
     //JWT配置相关
     private JwtConfig jwt;
 }
