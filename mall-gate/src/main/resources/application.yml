@@ -42,9 +42,32 @@ spring:
         instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
         register: true
         enabled: true
+    gateway:
+      discovery:
+        locator:
+          lower-case-service-id: true
+          enabled: true
+      routes:
+        - id: mall-auth-server #权限认证
+          uri: lb://mall-auth
+          order: 8000
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - StripPrefix=2
+        - id: mall-admin #后台管理
+          uri: lb://mall-admin
+          order: 8001
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - StripPrefix=2
   boot:
     admin:
       client:
         url: http://127.0.0.1:8764
   main:
     allow-bean-definition-overriding: true
+gate:
+  ignore:
+    startWith: /auth/jwt

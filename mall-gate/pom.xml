@@ -13,6 +13,15 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.ds.mall</groupId>
+            <artifactId>mall-interface</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ds.mall</groupId>
+            <artifactId>mall-auth-client</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>de.codecentric</groupId>
             <artifactId>spring-boot-admin-starter-client</artifactId>
         </dependency>

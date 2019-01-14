@@ -11,8 +11,9 @@
     认证鉴权相关的
 ## mall-auth-server
     客户端认证
-
+        网关认证
     服务鉴权
+        内部服务之间的访问鉴权
 # mall-backend
     后台管理
 ## mall-backend-api
