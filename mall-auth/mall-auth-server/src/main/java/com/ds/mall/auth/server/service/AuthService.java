@@ -1,6 +1,6 @@
 package com.ds.mall.auth.server.service;
 
-import com.ds.mall.auth.server.feign.FeignApi;
+import com.ds.mall.auth.server.feign.FeignAuthServerApi;
 import com.ds.mall.auth.server.model.LoginRequest;
 import com.ds.mall.backend.vo.user.UserVo;
 import com.ds.mall.common.exception.UserInvalidException;
@@ -16,12 +16,12 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AuthService implements IAuthService {
 
-    private final FeignApi feignApi;
+    private final FeignAuthServerApi feignAuthServerApi;
     private final JwtService jwtService;
 
     @Override
     public String login(LoginRequest request) throws Exception {
-        UserVo user = feignApi.login(request);
+        UserVo user = feignAuthServerApi.login(request);
         if(null == user || StringUtils.isEmpty(user.getId())){
             throw new UserInvalidException("The user does not exist.");
         }
