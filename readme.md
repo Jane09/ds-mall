@@ -1,3 +1,4 @@
+![springcloud](./doc/springcloud.png)
 # spring boot
     2.0.7
 
@@ -40,7 +41,7 @@
     需要Netty运行时支持，springboot webflux
     It does not work in a traditional Servlet Container or built as a
 
-## 术语
+## Gateway术语
    路由：
    predicate：
    filter：
@@ -50,9 +51,10 @@
    URIs defined in routes without a port will get a default port set to 80 and 443 for HTTP and HTTPS URIs respectively
 
     hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 5000
+    #
 
-   spring:
-     cloud:
+    spring:
+      cloud:
        gateway:
          routes:
          - id: after_route
@@ -96,6 +98,69 @@
            KeyResolver userKeyResolver() {
                return exchange -> Mono.just(exchange.getRequest().getQueryParams().getFirst("user"));
            }
+           - RedirectTo=302, http://acme.org  #takes a status and a url parameter. The status should be a 300 series redirect http code, such as 301. The url should be a valid url. This will be the value of the Location header
+           # spring.cloud.gateway.filter.remove-non-proxy-headers.headers
+           - RemoveRequestHeader=X-Request-Foo #发送之前删除X-Request-Foo
+           - RemoveResponseHeader=X-Response-Foo
+           - RewritePath=/foo/(?<segment>.*), /$\{segment} #takes a path regexp parameter and a replacement parameter.
+           # For a request path of /foo/bar, this will set the path to /bar
+           - SaveSession #forces a WebSession::save operation before forwarding the call downstream.
 
+           predicates:
+           - Path=/foo/{segment}
+           filters:
+           - SetPath=/{segment} # For a request path of /foo/bar, this will set the path to /bar
+           - SetResponseHeader=X-Response-Foo, Bar
+           - SetStatus=401 #响应编码
+           - StripPrefix=2 # http://nameservice/name/bar/foo -> http://nameservice/foo
+           - name: Retry
+                 args:
+                   retries: 3
+                   statuses: BAD_GATEWAY
+
+         X-Xss-Protection:1; mode=block
+         Strict-Transport-Security:max-age=631138519
+         X-Frame-Options:DENY
+         X-Content-Type-Options:nosniff
+         Referrer-Policy:no-referrer
+         Content-Security-Policy:default-src 'self' https:; font-src 'self' https: data:; img-src 'self' https: data:; object-src 'none'; script-src https:; style-src 'self' https: 'unsafe-inline'
+         X-Download-Options:noopen
+         X-Permitted-Cross-Domain-Policies:none
+         #替换
+         spring.cloud.gateway.filter.secure-headers
+            xss-protection-header
+            strict-transport-security
+            frame-options
+            content-type-options
+            referrer-policy
+            content-security-policy
+            download-options
+            permitted-cross-domain-policies
+## zuul
+    Zuul是Netflix基于jvm的路由器和服务器端负载平衡器
+    Authentication      鉴权
+    Insights
+    Stress Testing      压力测试
+    Canary Testing      金丝雀测试
+    Dynamic Routing     动态路由
+    Service Migration   服务迁移
+    Load Shedding
+    Security            安全
+    Static Response handling
+    Active/Active traffic management
+    #依赖
+    spring-cloud-starter-netflix-zuul
+
+    @EnableZuulProxy
+    zuul:
+      ignoredServices: '*'
+      routes:
+        users: /myusers/**
+    #忽略所有请求，除了 users
+    zuul:
+      routes:
+        users:
+          path: /myusers/**
+          serviceId: user_service
 
 
