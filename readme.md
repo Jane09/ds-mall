@@ -161,6 +161,29 @@
       routes:
         users:
           path: /myusers/**
-          serviceId: user_service
+          serviceId: user_service 指向user_service
+          url: http://example.com/users_service 或者 url
+
+    zuul:
+      routes:
+        echo:
+          path: /myusers/**
+          serviceId: myusers-service
+          stripPrefix: true
+    hystrix:
+      command:
+        myusers-service:
+          execution:
+            isolation:
+              thread:
+                timeoutInMilliseconds: ...
+    myusers-service: # 服务ID
+      ribbon:
+        NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
+        listOfServers: http://example1.com,http://example2.com
+        ConnectTimeout: 1000
+        ReadTimeout: 3000
+        MaxTotalHttpConnections: 500
+        MaxConnectionsPerHost: 100
 
 
