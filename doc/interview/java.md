@@ -55,6 +55,7 @@
     持久cookie
 
 ### Java中的队列都有哪些，有什么区别
+
     FIFO
     Queue继承了Collection；
     Deque继承Queue，实现LinkedList
@@ -69,3 +70,23 @@
     PriorityBlockingQueue: 数组实现，ReentrantLock，compare
     DelayQueue：一个由优先级堆支持的、基于时间的调度队列，PriorityQueue实现，数组，优先级，时间
     SynchronousQueue: 一个利用 BlockingQueue 接口的简单聚集（rendezvous）机制
+    TODO
+### Java的内存模型以及GC算法
+
+#### 内存数据：
+    程序计数器：存放下一条运行的指令
+    虚拟机栈：存放函数调用堆栈信息
+    本地方法栈：存放函数调用堆栈信息
+    java堆：存放Java程序运行时所需的对象等数据
+    方法区：存放程序的类元数据信息
+[内存模型](https://www.cnblogs.com/yueshutong/p/9768298.html)
+#### 程序计数器
+    每一个线程都必须有一个独立的程序计数器，用于记录下一条要运行的指令。
+    各个线程之间的计数器互不影响，独立工作；是一块线程私有的内存空间
+    如果当前程序正在执行一个Java方法，则程序计数器记录正在执行的Java字节码地址，如果当前线程正在执行一个Native方法，则程序计数器为空
+#### 虚拟机栈
+    线程的私有空间，它和Java线程在同一时间创建，它保存方法的局部变量、部分结果，并参与方法的调用和返回
+    在Java虚拟机规范中，定义了两种异常与栈空间有关：StackOverflowError 和 OutOfMemoryError。
+    在 HotSpot 虚拟机中，可以使用 -Xss 参数（如：-Xss1M）来设置栈的大小。栈的大小直接决定了函数调用的可达深度
+    虚拟机栈在运行时使用一种叫做栈帧的数据结构保存上下文数据。在栈帧中，存放了方法的局部变量表、操作数栈、动态连接方法和返回地址等信息。
+    每一个方法的调用都伴随着栈帧的入栈操作。相应的，方法的返回则表示栈帧的出栈操作。
