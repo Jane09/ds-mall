@@ -1,0 +1,73 @@
+server:
+  port: 9999
+spring:
+  application:
+    name: mall-api-gateway
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/ag_zipkin?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    continue-on-error: true
+  sleuth:
+    enabled: false
+    web:
+      client:
+        enabled: true
+    sampler:
+      probability: 1.0 #将采样比例设置为 1.0，也就是全部都需要。默认是 0.1
+    http:
+      legacy:
+        enabled: true
+  zipkin:
+    base-url: http://localhost:9411/
+    enabled: true
+    sender:
+      type: rabbit
+  rabbitmq:
+    addresses: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: sleuth
+  cloud:
+    consul:
+      port: 8500
+      host: 127.0.0.1
+      enabled: true
+      discovery:
+        service-name: ${spring.application.name}
+        healthCheckPath: /actuator/health
+        healthCheckInterval: 5s
+        instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+        register: true
+        enabled: true
+    gateway:
+      discovery:
+        locator:
+          lower-case-service-id: true
+          enabled: true
+      routes:
+        - id: mall-auth-server #权限认证
+          uri: lb://mall-auth
+          order: 8000
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - StripPrefix=2
+        - id: mall-admin #后台管理
+          uri: lb://mall-admin
+          order: 8001
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - StripPrefix=2
+  boot:
+    admin:
+      client:
+        url: http://127.0.0.1:8764
+  main:
+    allow-bean-definition-overriding: true
+gate:
+  ignore:
+    startWith: /auth/jwt
