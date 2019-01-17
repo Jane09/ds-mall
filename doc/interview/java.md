@@ -1,3 +1,4 @@
+[参考](http://ngudream.com/2017/03/17/java-interview/)
 ### String为什么是final类型的，好处
     拒绝被继承，不可变；一旦实例化就不可变
     具体实现是：private final char[] value; 不可变字符数组
@@ -300,3 +301,10 @@
 ##### Spliterator
 
 ##### DateTime API
+
+### Java数组和链表两种结构的操作效率，在哪些情况下(从开头开始，从结尾开始，从中间开始)，哪些操作(插入，查找，删除)的效率高
+[参考](https://blog.csdn.net/qq_27093465/article/details/52267872)
+    数组开辟的是连续的内存空间，是根据基地址和偏移量来算出地址（有乘法和加法运算），然后访问。
+    链表前一个数据的地址指向下一个数据地址，如：p = p->next；然后用 *p 访问。按这个说的话，它就一个赋值语句。
+### Java内存泄露的问题调查定位：jmap，jstack的使用等等
+[参考](https://www.tuicool.com/articles/eu26jeE)
