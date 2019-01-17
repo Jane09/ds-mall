@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: mall-api-zuul
+zuul:
+  ignored-services: '*'
+  routes:
+    users: /myuser/** #
