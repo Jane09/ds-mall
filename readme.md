@@ -137,6 +137,7 @@
             download-options
             permitted-cross-domain-policies
 ## zuul
+https://cloud.spring.io/spring-cloud-static/Finchley.SR2/multi/multi__router_and_filter_zuul.html
     Zuul是Netflix基于jvm的路由器和服务器端负载平衡器
     Authentication      鉴权
     Insights
