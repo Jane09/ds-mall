@@ -20,6 +20,7 @@
         <module>mall-cache</module>
         <module>mall-seckill</module>
         <module>mall-api</module>
+        <module>mall-algorithm</module>
     </modules>
 
     <parent>
