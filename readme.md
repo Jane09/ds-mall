@@ -48,6 +48,7 @@
    运行：
 
    ![运行逻辑](./doc/spring_cloud_gateway_diagram.png)
+
    URIs defined in routes without a port will get a default port set to 80 and 443 for HTTP and HTTPS URIs respectively
 
     hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 5000
@@ -137,7 +138,9 @@
             download-options
             permitted-cross-domain-policies
 ## zuul
+
 https://cloud.spring.io/spring-cloud-static/Finchley.SR2/multi/multi__router_and_filter_zuul.html
+
     Zuul是Netflix基于jvm的路由器和服务器端负载平衡器
     Authentication      鉴权
     Insights
