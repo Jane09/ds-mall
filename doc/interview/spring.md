@@ -101,5 +101,10 @@
 
 ### spring组件
 
+### Spring 里用了单例 Bean, 怎么保证访问 Bean 字段时的并发安全？
+
+    用并发安全的数据结构，比如 ConcurrentHashMap；或者加互斥锁
+
+
 ### springcloud
 
