@@ -15,6 +15,11 @@ public class VolatileDemo {
         }).start();
         while (n3 == 0) {
 //            System.out.println("hello"); //加了之后能够答应end
+//            try {
+//                Thread.sleep(1);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
         }
         System.out.println("end");
     }
