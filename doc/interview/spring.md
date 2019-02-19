@@ -1,4 +1,7 @@
 ## spring框架
+
+   ![spring](https://mp.weixin.qq.com/s/N507Cfb_mbkGvHtg_FIaVg)
+
 ### spring bean初始化流程
     spring 5
 #### 定义
@@ -74,6 +77,10 @@
 
     解耦，提供一种构造对象的方式；
     缺点：占用内存多、构造对象慢、启动慢
+
+    IoC容器也是一样，你只需要告诉它需要某个bean，它就把对应的实例（instance）扔给你，至于这个bean是否依赖其他组件，怎样完成它的初始化，根本就不需要你关心。
+
+    容器中的每一个bean都会有一个对应的BeanDefinition实例，该实例负责保存bean对象的所有必要信息，包括bean对象的class类型、是否是抽象类、构造方法和参数、其它属性等等。当客户端向容器请求相应对象时，容器就会通过这些信息为客户端返回一个完整可用的bean实例。
 
 
 ### AOP
